@@ -1,0 +1,109 @@
+#!/apps/base/python2.7/bin/python
+
+import time
+import sys
+import os
+import argparse
+import collections
+import platform
+
+
+#--------------------------------------------------------------------------------------------------
+# Main
+#
+
+def main(argv):
+    
+    parser = argparse.ArgumentParser(description='Setup processing environment for manual job')
+    parser.add_argument('names', metavar='name', nargs='+', help='a job name')
+    parser.add_argument('--prefix', help='root directory where "job" subdir(s) created')
+    
+    args = parser.parse_args()
+
+    pfx = args.prefix or os.getcwd()
+    pfx = os.path.abspath(pfx)
+
+    (system, node, release, version, machine, processor) = platform.uname()
+
+    shellpath = os.getenv('SHELL', '/bin/bash')
+    shellname = shellpath.split('/').pop()
+    shellext  = 'csh' if shellname == 'csh' or shellname == 'tcsh' else 'sh'
+
+    jmap = collections.OrderedDict()
+    jmap[' DATASTREAM_DATA_OUT'] = 'datastream'
+    jmap['  DATASTREAM_DATA_IN'] = '/data/archive'
+    jmap['      QUICKLOOK_DATA'] = 'plots'
+    jmap['           LOGS_DATA'] = 'logs'
+
+    for jname in args.names:
+        jroot = "%s/%s" % (pfx, jname)
+
+        if not os.path.exists(jroot):
+            os.makedirs(jroot)
+
+        print("------------------------------------------------------")
+
+        envpath = "%s/env.%s"   % (jroot, shellext)
+        respath = "%s/reset.%s" % (jroot, shellext)
+        ep = open(envpath, 'w')
+        rp = open(respath, 'w')
+        ep.write("#!%s\n" % shellpath)
+        rp.write("#!%s\n" % shellpath)
+
+        for v in jmap.keys():
+            if os.path.exists(jmap[v]):
+                p = jmap[v]
+                print("%s : %s" % (v, jmap[v]))
+            else:
+                p = "%s/%s" % (jroot, jmap[v])
+                if os.path.exists(p):
+                    print("%s : %s (already exists)" % (v, p))
+                elif jmap[v][0] != '.':
+                    try:
+                        os.makedirs(p)
+                        print("%s : %s (created)" % (v, p))
+                    except e:
+                        print("%s : %s (failed: %s)" % (v, p, str(e)))
+            if shellname == 'csh' or shellname == 'tcsh':
+                ep.write("setenv %s %s\n" % (v, p))
+                rp.write("setenv %s %s\n" % (v, os.getenv(v.strip(),'')))
+            else:
+                ep.write("export %s=%s\n" % (v, p))
+                rp.write("export %s=%s\n" % (v, os.getenv(v.strip(),'')))
+
+        ep.close()
+        rp.close()
+        os.chmod(envpath, 0o775)
+        os.chmod(respath, 0o775)
+
+        links = collections.OrderedDict()
+
+        links[ '%s/plots' % jroot ] = '%s/www/plots/%s' % (os.getenv('HOME', '~'),jname)
+
+        for link in links.keys():
+            if os.path.exists(links[link]):
+                print("%s (already exists)" % links[link])
+            elif not os.path.exists(link):
+                os.path.makedirs(link)
+            else:
+                parent = os.path.dirname(links[link])
+                if not os.path.exists(parent):
+                    os.makedirs(parent)
+                try:
+                    os.symlink(link, links[link])
+                    print("%s => %s" % (links[link], link))
+                except e:
+                    print("%s => %s (failed: %s)" % (links[link], link, str(e)))
+
+        print("------------------------------------------------------")
+        print("REMEMBER:")
+        print(" 1. source %s" % envpath)
+        print(" 2. <do work>")
+        print(" 3. http://dev.arm.gov/~%s/plots/%s" % (os.getenv('USER'), jname))
+
+
+#--------------------------------------------------------------------------------------------------
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
+
