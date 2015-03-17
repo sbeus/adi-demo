@@ -1,10 +1,6 @@
 #!/bin/bash
 
 #-----------------------------------------------------------------------------------
-# Setup demo directory and environment.
-
-scripts/setup demo1
-source demo1/env.sh
 
 start=20110101
   end=20120101
