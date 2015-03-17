@@ -7,7 +7,7 @@ This package contains demonstrations of the ARM Data Integrator (ADI) currently 
 Clone this Github repository from an ADC machine (e.g., research.dmf.arm.gov):
 
 ```
-$ git clone https://github.com/ARM-DOE/adi-demo.git adi-demo
+git clone https://github.com/ARM-DOE/adi-demo.git adi-demo
 ```
 
 ## Step 2: Setup
@@ -15,14 +15,14 @@ $ git clone https://github.com/ARM-DOE/adi-demo.git adi-demo
 ADI expects a `~/.db_connect` file with database configuration.  The one in this package provides a read-only connection to the same database that is used by the [PCM](https://engineering.arm.gov/pcm).
 
 ```
-$ cp adi-demo/db_connect ~/.db_connect
+cp adi-demo/db_connect ~/.db_connect
 ```
 
 ## Step 3: Run Examples
 
 Some example processes have been pre-configured using the [PCM](https://engineering.arm.gov/pcm).
 
-For each demo in `examples` follow this procedure:
+Follow the steps below to work through the provided examples:
 
 1. `cd adi-demo` *(NOTE: important that the examples are run from the root directory of the package)*
 
