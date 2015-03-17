@@ -26,7 +26,7 @@ echo "Running ADI ..."
     -f C1 \
     -b $start \
     -e $end \
-    -R
+    -R > /dev/null
 
 
 echo "Creating plots ..."
