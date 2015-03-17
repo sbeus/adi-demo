@@ -50,7 +50,7 @@ echo "Creating plots ..."
     -p 100 \
     -r $DATASTREAM_DATA_OUT \
     -w $QUICKLOOK_DATA \
-    -v all
+    -v all > /dev/null
 
 
 echo "http://dev.arm.gov/~$USER/adi-demo/demo4"
