@@ -24,7 +24,7 @@ Some example processes have been pre-configured using the [PCM](https://engineer
 
 Follow the steps below to work through the provided examples:
 
-1. `cd adi-demo` (move to package root; following commands are relative to this directory)
+1. `cd adi-demo` (moves to package root; following commands are relative to this directory)
 
 1. `scripts/setup demo1` (creates demo directory and provides script for setting up environment)
 
