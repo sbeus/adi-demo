@@ -1,6 +1,6 @@
-# ADI Demonstration
+# ADI Data Consolidation Demonstration
 
-This package contains demonstrations of the ARM Data Integrator (ADI) currently only meant to be run on the ARM Data Center (ADC).
+This package contains demonstrations of the ARM Data Integrator's (ADI) data consolidation capability.  It is currently only meant to be run on the ARM Data Center (ADC).  A system account can be requested [here](https://www.db.arm.gov/SARS2/).  To manage your ARM LDAP account, go [here](https://www.arm.gov/people/profile/) (required to create entries in the [PCM](https://engineering.arm.gov/pcm) but is not required for using this demo).
 
 ## Step 1: Download
 
