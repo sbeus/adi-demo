@@ -2,9 +2,11 @@
 
 #-----------------------------------------------------------------------------------
 
-start=20040101
-  end=20050101
+start=20030101
+  end=20131231
 
+
+echo "Running ADI ..."
 
 #-----------------------------------------------------------------------------------
 # Run ADI data consolidator.
@@ -19,13 +21,15 @@ start=20040101
 #     –R       "Reprocessing" mode allows multiple runs of same or overlapping date ranges
 
 /apps/process/bin/data_consolidator \
-    -n stmmettest3 \
-    -s sgp \
+    -n stmmettest2 \
+    -s nsa \
     -f C1 \
     -b $start \
     -e $end \
     -R
 
+
+echo "Creating plots ..."
 
 #-----------------------------------------------------------------------------------
 # Generate plots.
@@ -40,10 +44,13 @@ start=20040101
 #     -v <...> Variables (or "all")
 
 /apps/tool/bin/dq_inspector_dmf_py3 \
-    -d sgpmettempavgclosestC1.c1 \
+    -d nsamettempavgC1.c1 \
     -s $start \
     -e $end \
     -p 100 \
     -r $DATASTREAM_DATA_OUT \
     -w $QUICKLOOK_DATA \
     -v all
+
+
+echo "http://dev.arm.gov/~$USER/adi-demo/demo2"

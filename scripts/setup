@@ -36,7 +36,8 @@ def main(argv):
     jmap['           LOGS_DATA'] = 'logs'
 
     for jname in args.names:
-        jroot = "%s/%s" % (pfx, jname)
+        jroot = os.path.abspath("%s/%s" % (pfx, jname))
+        jname = os.path.basename(jroot)
 
         if not os.path.exists(jroot):
             os.makedirs(jroot)
@@ -78,7 +79,7 @@ def main(argv):
 
         links = collections.OrderedDict()
 
-        links[ '%s/plots' % jroot ] = '%s/www/plots/%s' % (os.getenv('HOME', '~'),jname)
+        links[ '%s/plots' % jroot ] = '%s/www/adi-demo/%s' % (os.getenv('HOME', '~'),jname)
 
         for link in links.keys():
             if os.path.exists(links[link]):
@@ -92,14 +93,14 @@ def main(argv):
                 try:
                     os.symlink(link, links[link])
                     print("%s => %s" % (links[link], link))
-                except e:
+                except Exception as e:
                     print("%s => %s (failed: %s)" % (links[link], link, str(e)))
 
         print("------------------------------------------------------")
         print("REMEMBER:")
         print(" 1. source %s" % envpath)
         print(" 2. <do work>")
-        print(" 3. http://dev.arm.gov/~%s/plots/%s" % (os.getenv('USER'), jname))
+        print(" 3. http://dev.arm.gov/~%s/adi-demo/%s" % (os.getenv('USER'), jname))
 
 
 #--------------------------------------------------------------------------------------------------

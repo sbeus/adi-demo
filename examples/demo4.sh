@@ -6,6 +6,8 @@ start=20120101
   end=20120102
 
 
+echo "Running ADI ..."
+
 #-----------------------------------------------------------------------------------
 # Run ADI data consolidator.
 #
@@ -27,6 +29,8 @@ start=20120101
     -R
 
 
+echo "Creating plots ..."
+
 #-----------------------------------------------------------------------------------
 # Generate plots.
 #
@@ -47,3 +51,6 @@ start=20120101
     -r $DATASTREAM_DATA_OUT \
     -w $QUICKLOOK_DATA \
     -v all
+
+
+echo "http://dev.arm.gov/~$USER/adi-demo/demo4"

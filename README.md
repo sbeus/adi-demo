@@ -24,17 +24,17 @@ Some example processes have been pre-configured using the [PCM](https://engineer
 
 Follow the steps below to work through the provided examples:
 
-1. `cd adi-demo` *(NOTE: important that the examples are run from the root directory of the package)*
+1. `cd adi-demo` (move to package root; following commands are relative to this directory)
 
 1. `scripts/setup demo1` (creates demo directory and provides script for setting up environment)
 
 1. `source demo1/env.*` (sets up environment)
 
-1. `examples/demo-1.sh` (runs ADI and then creates plots)
+1. `examples/demo1.sh` (runs ADI and then creates plots)
 
 1. Repeat previous three steps above for each demo
 
-1. Use your web browser to see plots: http://dev.arm.gov/~user/plots/demo1 (where `user` is your account name)
+1. Use your web browser to see plots: http://dev.arm.gov/~user/adi-demo/demo1 (where `user` is your account name)
 
 ## Questions?
 
