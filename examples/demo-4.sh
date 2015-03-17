@@ -24,7 +24,7 @@ start=20120101
     -f C1 \
     -b $start \
     -e $end \
-    –R
+    -R
 
 
 #-----------------------------------------------------------------------------------
@@ -44,6 +44,6 @@ start=20120101
     -s $start \
     -e $end \
     -p 100 \
-    -r $QUICKLOOK_DATA \
-    -w $DATASTREAM_DATA_OUT \
+    -r $DATASTREAM_DATA_OUT \
+    -w $QUICKLOOK_DATA \
     -v all
