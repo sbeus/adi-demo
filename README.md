@@ -32,7 +32,7 @@ Follow the steps below to work through the provided examples:
 
 1. `examples/demo-1.sh` (runs ADI and then creates plots)
 
-1. Repeat previous three steps above for demo-2.sh, demo-3.sh, and demo-4.sh
+1. Repeat previous three steps above for each demo
 
 1. Use your web browser to see plots: http://dev.arm.gov/~user/plots/demo1 (where `user` is your account name)
 
