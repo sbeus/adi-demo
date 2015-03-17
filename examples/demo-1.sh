@@ -39,7 +39,7 @@ start=20110101
 #     -w <...> Write directory
 #     -v <...> Variables (or "all")
 
-/apps/tool/bin/dq_inspector_dmf \
+/apps/tool/bin/dq_inspector_dmf_py3 \
     -d twpmettempavgC3.c1 \
     -s $start \
     -e $end \

@@ -39,7 +39,7 @@ start=20120101
 #     -w <...> Write directory
 #     -v <...> Variables (or "all")
 
-/apps/tool/bin/dq_inspector_dmf \
+/apps/tool/bin/dq_inspector_dmf_py3 \
     -d sgpceiltestC1.c1 \
     -s $start \
     -e $end \
